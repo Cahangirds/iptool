@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnet Calculator Tool</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../iplogo.webp">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌐 Subnet Calculator</h1>
+            <p>Calculate network information using IP and subnet mask</p>
+        </div>
+
+        <div class="calculator-card">
+            <div class="card-header">
+                <h2>Network Calculator</h2>
+                <p>Enter an IP address and subnet mask to get network details</p>
+            </div>
+            <div class="card-body">
+                <div class="quick-examples">
+                    <h4>🔥 Quick Examples</h4>
+                    <div class="examples-grid">
+                        <button class="example-btn" onclick="setExample('192.168.1.0/24')">192.168.1.0/24</button>
+                        <button class="example-btn" onclick="setExample('10.0.0.0/16')">10.0.0.0/16</button>
+                        <button class="example-btn" onclick="setExample('172.16.0.0/20')">172.16.0.0/20</button>
+                        <button class="example-btn" onclick="setExample('192.168.0.0/22')">192.168.0.0/22</button>
+                        <button class="example-btn" onclick="setExample('10.10.10.0/28')">10.10.10.0/28</button>
+                        <button class="example-btn" onclick="setExample('172.20.0.0/12')">172.20.0.0/12</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="ipInput">IP Address and Subnet Mask:</label>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <input type="text" id="ipInput" placeholder="192.168.1.0/24 or 192.168.1.0 255.255.255.0">
+                        </div>
+                        <button class="btn" onclick="calculateSubnet()">Calculate</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Or enter separately:</label>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-top: 10px;">
+                        <input type="text" id="separateIP" placeholder="IP Address (e.g., 192.168.1.0)">
+                        <select id="subnetMask">
+                            <option value="24">/24 (255.255.255.0)</option>
+                            <option value="8">/8 (255.0.0.0)</option>
+                            <option value="16">/16 (255.255.0.0)</option>
+                            <option value="20">/20 (255.255.240.0)</option>
+                            <option value="22">/22 (255.255.252.0)</option>
+                            <option value="25">/25 (255.255.255.128)</option>
+                            <option value="26">/26 (255.255.255.192)</option>
+                            <option value="27">/27 (255.255.255.224)</option>
+                            <option value="28">/28 (255.255.255.240)</option>
+                            <option value="29">/29 (255.255.255.248)</option>
+                            <option value="30">/30 (255.255.255.252)</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="calculateFromSeparate()" style="margin-top: 15px; width: 100%;">Calculate from Separate Inputs</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
