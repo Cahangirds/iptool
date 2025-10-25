@@ -265,7 +265,7 @@ main {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 45px;
+  top: 30px;
   left: 0;
   background: #fff;
   border-radius: 8px;
@@ -274,8 +274,8 @@ main {
   min-width: 180px;
   animation: fadeIn 0.3s ease;
   /* Dropdown açıq qalması üçün boşluq */
-  padding-top: 5px;
-  margin-top: -5px;
+  /* padding-top: 5px; */
+  /* margin-top: -5px; */
 }
 
 @keyframes fadeIn {

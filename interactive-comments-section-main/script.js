@@ -139,16 +139,25 @@ const createCommentNode = (commentObject) => {
     if (commentObject.replyingTo)
         commentNode.querySelector(".reply-to").textContent = "@" + commentObject.replyingTo;
 
-    commentNode.querySelector(".score-plus").addEventListener('click', () => {
-        commentObject.score++;
-        initComments()
-    });
+    const userVoted = {}; // hər comment üçün ayrı saxlayacaq
 
-    commentNode.querySelector(".score-minus").addEventListener('click', () => {
-        commentObject.score--;
-        if (commentObject.score < 0) commentObject.score = 0
-        initComments()
-    });
+commentNode.querySelector(".score-plus").addEventListener('click', () => {
+    if (!userVoted[commentObject.id]) { // əgər bu comment üçün hələ səs verməyibsə
+        commentObject.score++;
+        userVoted[commentObject.id] = true; // səs verilib kimi qeyd et
+        initComments();
+    }
+});
+
+commentNode.querySelector(".score-minus").addEventListener('click', () => {
+    if (!userVoted[commentObject.id]) { // əgər bu comment üçün hələ səs verməyibsə
+        if (commentObject.score > 0) {
+            commentObject.score--;
+        }
+        userVoted[commentObject.id] = true; // səs verilib kimi qeyd et
+        initComments();
+    }
+});
     if (commentObject.user.username == data.currentUser.username) {
         commentNode.querySelector(".comment").classList.add("this-user");
         commentNode.querySelector(".delete").addEventListener("click", () => { promptDel(commentObject) })
