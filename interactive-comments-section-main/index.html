@@ -23,6 +23,32 @@
       }
     </style>
   </head>
+  <nav class="main-navigation">
+      <div class="logo">
+        <img
+          src="https://images.scalebranding.com/ip-logo-pi-logo-0e4ee893-c955-4e39-bc9d-0dec8e7ea518.jpg"
+          alt="Logo"
+        />
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle">Tools</a>
+            <ul class="dropdown-menu">
+              <li><a href="../ip-addres-tracker-master/index.html">Ipmap</a></li>
+              <li><a href="../ipcul/index.html">Ipcul</a></li>
+              
+            </ul>
+          </li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="../help/index.html" >Help</a></li>
+          <li><a href="../interactive-comments-section-main/index.html" class="active">Feedback</a></li>
+        </ul>
+        <div class="hamburger">☰</div>
+      </nav>
+    </nav>
+
   <body>
     <template class="reply-input-template">
       <div class="reply-input container">
@@ -127,5 +153,24 @@
     <br />
     <br />
     <script src="script.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.toggle("show");
+        });
+
+        // Tools dropdown toggle for mobile
+        dropdownToggle.addEventListener("click", (e) => {
+          if(window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle("show");
+          }
+        });
+    </script>
   </body>
 </html>

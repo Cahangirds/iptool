@@ -9,6 +9,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="main-navigation">
+      <div class="logo">
+        <img
+          src="https://images.scalebranding.com/ip-logo-pi-logo-0e4ee893-c955-4e39-bc9d-0dec8e7ea518.jpg"
+          alt="Logo"
+        />
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle">Tools</a>
+            <ul class="dropdown-menu">
+              <li><a href="../ip-addres-tracker-master/index.html">Ipmap</a></li>
+              <li><a href="../ipcul/index.html">Ipcul</a></li>
+              
+            </ul>
+          </li>
+          <li><a href="../blog/index.html" class="active">Blog</a></li>
+          <li><a href="../help/index.html" >Help</a></li>
+          <li><a href="../interactive-comments-section-main/index.html">Feedback</a></li>
+        </ul>
+        <div class="hamburger">☰</div>
+      </nav>
+    </nav>
     <header class="blog-header">
         <div class="container">
             <h1 class="blog-title glow">IP Tools Blog</h1>
@@ -41,110 +66,26 @@
             </a>
         </section>
 
-        <section class="blog-grid">
-            <article class="blog-card">
-                <div class="card-image">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span><i class="fas fa-calendar-alt"></i> September 15, 2025</span>
-                        <span><i class="fas fa-eye"></i> 1,234</span>
-                    </div>
-                    <h3 class="card-title">How the IP Calculator Works: Subnet Calculations</h3>
-                    <p class="card-excerpt">Learn about subnet calculations essential for network administrators and how to use IP calculator tools.</p>
-                    <a href="#" class="read-more">
-                        Read <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
+        <div class="container">
+        <h1><i class="fas fa-blog"></i> Blog Articles</h1>
+        
+        <section class="blog-grid" id="blogGrid"></section>
+    </div>
 
-            <article class="blog-card">
-                <div class="card-image">
-                    <i class="fas fa-globe-americas"></i>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span><i class="fas fa-calendar-alt"></i> September 12, 2025</span>
-                        <span><i class="fas fa-eye"></i> 2,156</span>
-                    </div>
-                    <h3 class="card-title">IP Geolocation: Accuracy and Limitations</h3>
-                    <p class="card-excerpt">How does geolocation from IP addresses work? Learn about its capabilities and limitations.</p>
-                    <a href="#" class="read-more">
-                        Read <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="card-image">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span><i class="fas fa-calendar-alt"></i> September 10, 2025</span>
-                        <span><i class="fas fa-eye"></i> 987</span>
-                    </div>
-                    <h3 class="card-title">DNS and Reverse DNS: The Internet's Phonebook</h3>
-                    <p class="card-excerpt">Detailed information about the process of converting domain names to IP addresses and the importance of reverse DNS lookup.</p>
-                    <a href="#" class="read-more">
-                        Read <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="card-image">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span><i class="fas fa-calendar-alt"></i> September 8, 2025</span>
-                        <span><i class="fas fa-eye"></i> 1,789</span>
-                    </div>
-                    <h3 class="card-title">DDoS Attacks and IP Security</h3>
-                    <p class="card-excerpt">Practical advice on IP-level security threats and protection against DDoS attacks.</p>
-                    <a href="#" class="read-more">
-                        Read <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="card-image">
-                    <i class="fas fa-user-secret"></i>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span><i class="fas fa-calendar-alt"></i> September 5, 2025</span>
-                        <span><i class="fas fa-eye"></i> 2,345</span>
-                    </div>
-                    <h3 class="card-title">VPN and Proxy: Differences and Use Cases</h3>
-                    <p class="card-excerpt">How VPNs and proxy servers affect IP addresses, anonymity levels, and appropriate use cases.</p>
-                    <a href="#" class="read-more">
-                        Read <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="card-image">
-                    <i class="fas fa-cloud"></i>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span><i class="fas fa-calendar-alt"></i> September 2, 2025</span>
-                        <span><i class="fas fa-eye"></i> 1,456</span>
-                    </div>
-                    <h3 class="card-title">Cloud Computing and IP Management</h3>
-                    <p class="card-excerpt">Management of IP addresses in cloud services, elastic IPs, and load balancing strategies.</p>
-                    <a href="#" class="read-more">
-                        Read <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
-        </section>
-
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-meta" id="modalMeta"></div>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="close-hint">
+                <i class="fas fa-hand-pointer"></i> Click anywhere to close
+            </div>
+        </div>
+    </div>
         <nav class="pagination">
             <a href="#" class="page-btn"><i class="fas fa-chevron-left"></i></a>
             <a href="#" class="page-btn active">1</a>
@@ -170,5 +111,207 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.toggle("show");
+        });
+
+        // Tools dropdown toggle for mobile
+        dropdownToggle.addEventListener("click", (e) => {
+          if(window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle("show");
+          }
+        });
+         const blogPosts = [
+            {
+                id: 1,
+                icon: 'fa-calculator',
+                date: 'September 15, 2025',
+                views: '1,234',
+                title: 'How the IP Calculator Works: Subnet Calculations',
+                excerpt: 'Learn about subnet calculations essential for network administrators and how to use IP calculator tools.',
+                content: `
+                    <p>IP calculators are indispensable tools for network administrators. They automatically calculate important parameters such as subnet mask, broadcast address, and host count.</p>
+                    <p>When working with CIDR notation, for example, a /24 mask equals 255.255.255.0, which means 254 usable host addresses. Two addresses are reserved for special purposes in each network: the network address and the broadcast address.</p>
+                    <p>The subnetting process allows you to divide large networks into smaller, manageable segments. This increases security and improves network performance. With VLSM (Variable Length Subnet Mask) technique, you can use IP address space with maximum efficiency.</p>
+                `
+            },
+            {
+                id: 2,
+                icon: 'fa-globe-americas',
+                date: 'September 12, 2025',
+                views: '2,156',
+                title: 'IP Geolocation: Accuracy and Limitations',
+                excerpt: 'How does geolocation from IP addresses work? Learn about its capabilities and limitations.',
+                content: `
+                    <p>IP geolocation technology allows you to estimate a user's geographic location from their IP address. It works based on ASN (Autonomous System Number) and WHOIS data.</p>
+                    <p>Accuracy at the city level varies between approximately 55-80%. VPN or proxy usage significantly reduces accuracy. On mobile internet, accuracy is lower because carriers often assign dynamic IPs.</p>
+                    <p>For commercial purposes - such as content localization or ad targeting - this technology is very useful. However, for legal purposes, more accurate methods are required.</p>
+                `
+            },
+            {
+                id: 3,
+                icon: 'fa-network-wired',
+                date: 'September 10, 2025',
+                views: '987',
+                title: 'DNS and Reverse DNS: The Internet\'s Phonebook',
+                excerpt: 'Detailed information about the process of converting domain names to IP addresses and the importance of reverse DNS lookup.',
+                content: `
+                    <p>DNS (Domain Name System) is one of the fundamental infrastructure components of the internet. It converts human-readable domain names into IP addresses that computers understand.</p>
+                    <p>Reverse DNS is the opposite process - finding the domain name from an IP address. This is crucial in email servers' fight against spam. If the sender server's reverse DNS record is not properly configured, the email can be classified as spam.</p>
+                    <p>Caching of DNS queries improves performance. The TTL (Time To Live) parameter determines how long records are cached. Proper TTL selection ensures a balance between updates and performance.</p>
+                `
+            },
+            {
+                id: 4,
+                icon: 'fa-shield-alt',
+                date: 'September 8, 2025',
+                views: '1,789',
+                title: 'DDoS Attacks and IP Security',
+                excerpt: 'Practical advice on IP-level security threats and protection against DDoS attacks.',
+                content: `
+                    <p>DDoS (Distributed Denial of Service) attacks aim to render network resources unusable. Thousands of compromised devices send requests simultaneously.</p>
+                    <p>Rate limiting, IP blocking, and traffic filtering are the main defense methods. CDN (Content Delivery Network) services are effective in reducing the impact of DDoS attacks.</p>
+                    <p>Layer 3/4 attacks target bandwidth saturation, while Layer 7 attacks aim to exhaust server resources. Each type requires different defense strategies. Modern firewalls and IPS systems can detect and block these threats in real-time.</p>
+                `
+            },
+            {
+                id: 5,
+                icon: 'fa-user-secret',
+                date: 'September 5, 2025',
+                views: '2,345',
+                title: 'VPN and Proxy: Differences and Use Cases',
+                excerpt: 'How VPNs and proxy servers affect IP addresses, anonymity levels, and appropriate use cases.',
+                content: `
+                    <p>VPN (Virtual Private Network) creates an encrypted tunnel by encrypting all internet traffic. Proxy only routes browser traffic and may not provide encryption.</p>
+                    <p>VPNs provide complete anonymity and security. Since data is encrypted, ISPs or other observers cannot see activity. Proxies are faster but have lower security levels.</p>
+                    <p>VPN is essential for corporate networks. Remote workers can securely access company resources. Both methods work for bypassing geo-blocking, but VPN is more reliable. Split tunneling functionality allows VPN use for selected traffic only.</p>
+                `
+            },
+            {
+                id: 6,
+                icon: 'fa-cloud',
+                date: 'September 2, 2025',
+                views: '1,456',
+                title: 'Cloud Computing and IP Management',
+                excerpt: 'Management of IP addresses in cloud services, elastic IPs, and load balancing strategies.',
+                content: `
+                    <p>IP management in cloud environments differs from traditional data centers. Elastic IPs allow assigning static addresses to dynamic virtual machines.</p>
+                    <p>Load balancers distribute incoming traffic across multiple servers. This ensures high availability and scalability. During auto-scaling, new instances automatically receive IPs and are added to the load balancer.</p>
+                    <p>VPC (Virtual Private Cloud) creates an isolated network environment. Subnets, routing tables, and security groups are virtual analogs of traditional network components. IPv6 support is expanding in cloud providers and solves the address shortage problem.</p>
+                `
+            }
+        ];
+
+        // Render blog posts
+        function renderBlogPosts() {
+            const blogGrid = document.getElementById('blogGrid');
+            
+            blogPosts.forEach(post => {
+                const article = document.createElement('article');
+                article.className = 'blog-card';
+                article.innerHTML = `
+                    <div class="card-image">
+                        <i class="fas ${post.icon}"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
+                            <span><i class="fas fa-eye"></i> ${post.views}</span>
+                        </div>
+                        <h3 class="card-title">${post.title}</h3>
+                        <p class="card-excerpt">${post.excerpt}</p>
+                        <a href="#" class="read-more" data-id="${post.id}">
+                            Read <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `;
+                blogGrid.appendChild(article);
+            });
+
+            // Add click events after rendering
+            addClickEvents();
+        }
+
+        // Add click events to read more buttons
+        function addClickEvents() {
+            document.querySelectorAll('.read-more').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    const post = blogPosts.find(p => p.id === postId);
+                    
+                    if (post) {
+                        openModal(post);
+                    }
+                });
+            });
+        }
+
+        // Open modal with post data
+        function openModal(post) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMeta = document.getElementById('modalMeta');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalIcon.innerHTML = `<i class="fas ${post.icon}"></i>`;
+            modalTitle.textContent = post.title;
+            modalMeta.innerHTML = `
+                <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
+                <span><i class="fas fa-eye"></i> ${post.views}</span>
+            `;
+            modalBody.innerHTML = post.content;
+            
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal function
+        function closeModal() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Initialize - render immediately
+        renderBlogPosts();
+        
+        // Also add event listeners after DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Close when clicking on overlay
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            // Close when clicking on modal content
+            modalContent.addEventListener('click', function(e) {
+                closeModal();
+            });
+            
+            // Close on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
