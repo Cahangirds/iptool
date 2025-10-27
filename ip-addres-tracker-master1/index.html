@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iptool</title>
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9/sha256.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+    <script src="./script/jquery-3.6.0.min.js"></script>
+    <script src="./script/script.js" defer></script>
+
+</head>
+<style>
+    .main-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #070707;
+  background: rgba(7, 7, 7, 0.1);
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* Logo */
+.logo img {
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Nav Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #3d3c3c;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  position: relative;
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: #002366;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::before,
+.nav-links a.active::before {
+  width: 80%;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links a.active {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  animation: fadeIn 0.3s ease;
+  /* Dropdown açıq qalması üçün boşluq */
+  padding-top: 5px;
+  margin-top: -5px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  width: 100%;
+  margin: 0;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu a::before {
+  display: none;
+}
+
+.dropdown-menu a:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding-left: 25px;
+}
+
+/* Hover for desktop */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown açıq qalması üçün əlavə alan */
+.dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .main-navigation {
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.95);
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 250px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    gap: 15px;
+  }
+
+  .nav-links li {
+    margin: 0;
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+  }
+
+  .nav-links.show {
+    display: flex;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .dropdown-menu {
+    position: static;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: none;
+    display: none;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    color: #fff;
+    padding: 10px 20px;
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    padding-left: 25px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-navigation {
+    padding: 10px 15px;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .nav-links {
+    width: 220px;
+    top: 60px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+}
+</style>
+
+<body>
+     <nav class="main-navigation">
+      <div class="logo">
+        <img
+          src="https://images.scalebranding.com/ip-logo-pi-logo-0e4ee893-c955-4e39-bc9d-0dec8e7ea518.jpg"
+          alt="Logo"
+        />
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown" >
+            <a href="" class="dropdown-toggle" >Tools</a>
+            <ul class="dropdown-menu">
+              <li><a href="../ip-addres-tracker-master1/index.html" class="active">Ipmap</a></li>
+              <li><a href="../ipcul/index.html">Ipcul</a></li>
+              
+            </ul>
+          </li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="../help/index.html" >Help</a></li>
+          <li><a href="../interactive-comments-section-main/index.html">Feedback</a></li>
+        </ul>
+        <div class="hamburger">☰</div>
+      </nav>
+    </nav>
+    <div id="root" role="application">
+        <figure class="banner-container">
+            <img src="./assets/pattern-bg.png" alt="banner">
+        </figure>
+
+        <div class="map-container" id="map"></div>
+
+        <div class="input-output-view">
+            <h1>IP address tracker</h1>
+            <form action="#" id="ip-form">
+                <input type="text" name="ip" id="ip" value="" placeholder="Search for any ip address" aria-label="ip-address">
+                <button type="submit" title="submit" id="form-submit-btn"><img src="./assets/icon-arrow.svg" alt=""></button>
+            </form>
+            <div class="ip-details-seprators" role="group">
+                <div class="ip-details">
+                    <div class="ip-D ip-address">
+                        <h1>ip address</h1>
+                        <h2 id="ip-tag">N/A</h5>
+                    </div>
+                    <span class="seprator"></span>
+                    <div class="ip-D location">
+                        <h1>location</h1>
+                        <h2 id="location-tag">N/A</h5>
+                    </div>
+                    <span class="seprator"></span>
+                    <div class="ip-D timezone">
+                        <h1>timezone</h1>
+                        <h2 id="timezone-tag">N/A</h5>
+                    </div>
+                    <span class="seprator"></span>
+                    <div class="ip-D isp">
+                        <h1>isp</h1>
+                        <h2 id="isp-tag">N/A</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+ <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.toggle("show");
+        });
+
+        // Tools dropdown toggle for mobile
+        dropdownToggle.addEventListener("click", (e) => {
+          if(window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle("show");
+          }
+        });
+    </script>
+
+</html>
